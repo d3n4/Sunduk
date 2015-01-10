@@ -1,4 +1,10 @@
 <?php
+
+    define('DEBUG', true);
+
+    if(DEBUG)
+        header("Content-type: text/plain");
+
     /* PSR-0 */
     function autoload($className)
     {
@@ -17,7 +23,6 @@
 
     spl_autoload_register('autoload');
 
-    define('DEBUG', true);
 
     $app = new \Sunduk\app();
 
@@ -30,7 +35,7 @@
         $args = func_get_args();
         array_shift($args); // shift format text from stack
         foreach($args as $k => $v) { // replace keys to format {0-9...}
-            $args['{'.$k.'}'] = var_export($v, true);
+            $args['{'.$k.'}'] = $v;
             unset($args[$k]);
         }
         echo str_replace(array_keys($args), array_values($args), $format) . "\r\n";
@@ -38,7 +43,6 @@
     }
 
     if(DEBUG) {
-        echo '<pre>';
         clog('Sunduk application debug information {0}', "test");
         $start = microtime(1);
         $memory_start = memory_get_usage();
@@ -51,5 +55,4 @@
         $end = microtime(1);
         clog("Elapsed time by app::main() execution: " . ($end - $start) . " ms.");
         clog("Used memory by app::main() execution: " . ($memory_end - $memory_start) . " bytes.");
-        echo '</pre>';
     }
