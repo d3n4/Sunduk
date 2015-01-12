@@ -3,6 +3,7 @@
 
         /**
          * Class WebClient
+         * @todo remove unused class зря писал #лядь
          * @todo Cookie container
          * @package Sunduk\Network
          */

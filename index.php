@@ -1,5 +1,7 @@
 <?php
 
+    set_time_limit(0);
+
     define('DEBUG', true);
 
     if(DEBUG)
@@ -39,7 +41,7 @@
             unset($args[$k]);
         }
         echo str_replace(array_keys($args), array_values($args), $format) . "\r\n";
-        echo "-----------------------------------------------------------------------------------\r\n";
+        echo "------------------------------------------------------------------------------\r\n";
     }
 
     if(DEBUG) {
@@ -56,3 +58,6 @@
         clog("Elapsed time by app::main() execution: " . ($end - $start) . " ms.");
         clog("Used memory by app::main() execution: " . ($memory_end - $memory_start) . " bytes.");
     }
+
+
+fgets(STDIN);
